@@ -27,7 +27,7 @@ class Comment(Resource):
     )
 
     def post(self):
-        data = Comment.parser.parse_args()
+        data = self.parser.parse_args()
         conn = ConnectToDB()
         conn.insert_records(**data)
         return {"Sucess":"Comment is Successfully posted!"}
@@ -39,7 +39,7 @@ class Comment(Resource):
     # help="Comment ID cannot be blank"
     )
     def delete(self):
-        data = Comment.delparser.parse_args()
+        data = self.delparser.parse_args()
         conn = ConnectToDB()
         conn.deleteComment(**data)
         return {"Sucess":"Record Successfully Deleted of Comment ID {0}".format(data['cId'])}
@@ -54,7 +54,7 @@ class Comment(Resource):
     # required=True,
     # help="Comment ID cannot be blank"
     def put(self):
-        data = Comment.putparser.parse_args()
+        data = self.putparser.parse_args()
         conn = ConnectToDB()
         conn.updatecomment(**data)
         return {"Sucess":"{0} value is Successfully Updated with {1}".format(data['cText'],data['cId'])}
