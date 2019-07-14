@@ -8,19 +8,19 @@ class Comment(Resource):
 
     parser = reqparse.RequestParser()
     parser.add_argument('cText',
-    type=str,
-    required=True,
-    help="Comment Text cannot be blank"
+    type=str
+    # required=True,
+    # help="Comment Text cannot be blank"
     )
     parser.add_argument('cPosted',
-    type=str,
-    required=True,
-    help="Comment Posted By cannot be blank"
+    type=str
+    # required=True,
+    # help="Comment Posted By cannot be blank"
     )
     parser.add_argument('rId',
-    type=int,
-    required=True,
-    help="Root ID cannot be blank"
+    type=int
+    # required=True,
+    # help="Root ID cannot be blank"
     )
     parser.add_argument('cAssoc',
     type=int
@@ -34,9 +34,9 @@ class Comment(Resource):
     
     delparser = reqparse.RequestParser()
     delparser.add_argument('cId',
-    type=int,
-    required=True,
-    help="Comment ID cannot be blank"
+    type=int
+    # required=True,
+    # help="Comment ID cannot be blank"
     )
     def delete(self):
         data = Comment.delparser.parse_args()
@@ -46,14 +46,13 @@ class Comment(Resource):
 
     putparser = reqparse.RequestParser()
     putparser.add_argument('cText',
-    type=str,
-    required=True,
-    help="Comment Text cannot be blank")
+    type=str)
+    # required=True,
+    # help="Comment Text cannot be blank")
     putparser.add_argument('cId',
-    type=int,
-    required=True,
-    help="Comment ID cannot be blank"
-    )
+    type=int)
+    # required=True,
+    # help="Comment ID cannot be blank"
     def put(self):
         data = Comment.putparser.parse_args()
         conn = ConnectToDB()
