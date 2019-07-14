@@ -1,5 +1,5 @@
-from app import Resource,reqparse,ConnectToDB
-
+from app import Resource,ConnectToDB
+from flask_restful import reqparse
 class Comment(Resource):
     def get(self):
         conn = ConnectToDB()
