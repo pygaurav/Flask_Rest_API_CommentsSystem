@@ -1,1 +1,1 @@
-web unicorn run:app
+web gunicorn deploy:app
