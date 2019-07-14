@@ -1,5 +1,5 @@
-from app import Resource,ConnectToDB
-from flask_restful import reqparse
+from app import Resource,reqparse,ConnectToDB
+
 class Comment(Resource):
     def get(self):
         conn = ConnectToDB()
@@ -8,53 +8,54 @@ class Comment(Resource):
 
     parser = reqparse.RequestParser()
     parser.add_argument('cText',
-    type=str
-    # required=True,
-    # help="Comment Text cannot be blank"
+    type=str,
+    required=True,
+    help="Comment Text cannot be blank"
     )
     parser.add_argument('cPosted',
-    type=str
-    # required=True,
-    # help="Comment Posted By cannot be blank"
+    type=str,
+    required=True,
+    help="Comment Posted By cannot be blank"
     )
     parser.add_argument('rId',
-    type=int
-    # required=True,
-    # help="Root ID cannot be blank"
+    type=int,
+    required=True,
+    help="Root ID cannot be blank"
     )
     parser.add_argument('cAssoc',
     type=int
     )
 
     def post(self):
-        data = self.parser.parse_args()
+        data = Comment.parser.parse_args()
         conn = ConnectToDB()
         conn.insert_records(**data)
         return {"Sucess":"Comment is Successfully posted!"}
     
-    delparser = reqparse.RequestParser()
-    delparser.add_argument('cId',
-    type=int
+    # delparser = reqparse.RequestParser()
+    # delparser.add_argument('cId',
+    # type=int,
     # required=True,
     # help="Comment ID cannot be blank"
-    )
-    def delete(self):
-        data = self.delparser.parse_args()
-        conn = ConnectToDB()
-        conn.deleteComment(**data)
-        return {"Sucess":"Record Successfully Deleted of Comment ID {0}".format(data['cId'])}
+    # )
+    # def delete(self):
+    #     data = Comment.delparser.parse_args()
+    #     conn = ConnectToDB()
+    #     conn.deleteComment(**data)
+    #     return {"Sucess":"Record Successfully Deleted of Comment ID {0}".format(data['cId'])}
 
-    putparser = reqparse.RequestParser()
-    putparser.add_argument('cText',
-    type=str)
+    # putparser = reqparse.RequestParser()
+    # putparser.add_argument('cText',
+    # type=str,
     # required=True,
     # help="Comment Text cannot be blank")
-    putparser.add_argument('cId',
-    type=int)
+    # putparser.add_argument('cId',
+    # type=int,
     # required=True,
     # help="Comment ID cannot be blank"
-    def put(self):
-        data = self.putparser.parse_args()
-        conn = ConnectToDB()
-        conn.updatecomment(**data)
-        return {"Sucess":"{0} value is Successfully Updated with {1}".format(data['cText'],data['cId'])}
+    # )
+    # def put(self):
+    #     data = Comment.putparser.parse_args()
+    #     conn = ConnectToDB()
+    #     conn.updatecomment(**data)
+    #     return {"Sucess":"{0} value is Successfully Updated with {1}".format(data['cText'],data['cId'])}
