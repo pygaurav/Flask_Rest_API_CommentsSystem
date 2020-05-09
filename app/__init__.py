@@ -4,7 +4,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 api = Api(app)
-CORS(app,resources={r"*": {"origins": "https://comments-system-rest-api.herokuapp.com/comment"}})
+CORS(app,resources={r"/*": {"origins": "https://comments-system-rest-api.herokuapp.com/comment"}})
 
 from app.conn import ConnectToDB
 from app.func.func import Comment
